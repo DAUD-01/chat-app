@@ -1,10 +1,25 @@
-const message = document.getElementById("msg")
-const submit = document.getElementById("submit")
+const message = document.getElementById("msg");
+const form = document.getElementById("chat-form");
+const chatMessages = document.querySelector(".chat-messages");
+const chatMain = document.querySelector(".chat-main");
 
-submit.addEventListener("click", (e) => {
+
+const ul = document.createElement("ul");
+chatMessages.appendChild(ul);
+
+form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    console.log(message.value.toString());
+    const msgText = message.value.trim();
+    if (msgText === "") return;
+
+    const li = document.createElement("li");
+    li.textContent = msgText;
+
+    ul.appendChild(li);
 
     message.value = "";
-})
+    chatMain.scrollTop = chatMain.scrollHeight;
+
+});
+
