@@ -1,82 +1,106 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #fafafa; 
   margin: 0;
+  color: #262626;
 }
 
 .chat-container {
   max-width: 550px;
-  margin: 50px auto;
+  margin: 20px auto;
   background: #fff;
-  border-radius: 5px;
+  border: 1px solid #dbdbdb; 
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
-  height: 90vh;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
-  
+  height: 92vh;
+  overflow: hidden;
 }
 
 .chat-header {
-  padding: 10px;
-  background: #333;
-  color: #fff;
+  padding: 15px;
+  background: #fff;
+  color: #262626;
   text-align: center;
+  font-weight: 600;
+  border-bottom: 1px solid #dbdbdb;
+  font-size: 1.1rem;
 }
 
 .chat-main {
   flex: 1;
-  padding: 10px;
-  overflow-y: scroll;
-  border-bottom: 1px solid #ccc;
+  padding: 20px;
+  overflow-y: auto;
+  background: #fff;
 }
 
-.chat-messages {
-  display: flex;
-  flex-direction: column;
-  
-}
 .chat-messages ul {
   list-style: none;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 3px;   
-  display: flex;
+  gap: 4px;
 }
 
+/* Base style for all message bubbles */
 .chat-messages ul li {
-  margin-bottom: 8px;
-  border: 1px 20px #333;
-  padding: 8px;
-  border-radius: 10px;
+  margin-bottom: 4px;
+  padding: 8px 16px;
+  border-radius: 22px; /* Super rounded "pill" look */
+  max-width: 70%;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+  border: none; /* Removed the dashed border */
+}
+
+/* Style for received messages (Gray) */
+.chat-messages ul li {
+  align-self: flex-start;
+  background-color: #efefef;
+  color: #262626;
+}
+
+/* Style for sent messages (Blue/Purple Gradient) */
+.chat-messages ul li.sent {
+  align-self: flex-end;
+  background: linear-gradient(45deg, #f09433 5%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  /* background: linear-gradient(to right, #0095f6, #0074cc); */
   color: #fff;
-  background-color: hsl(0, 0%, 50%);
-  border: 1px solid #333;
-  max-width: 60vw;
 }
 
 .chat-form-container {
-  padding: 10px;
-  background: #eee;
+  padding: 20px;
+  background: #fff;
 }
 
 #chat-form {
   display: flex;
+  align-items: center;
+  border: 1px solid #dbdbdb;
+  border-radius: 25px; /* Rounded pill input */
+  padding: 5px 15px;
 }
 
 #chat-form input {
   flex: 1;
   padding: 10px;
   border: none;
-  border-radius: 3px 0 0 3px;
-  caret-color: #333;
+  outline: none;
+  font-size: 0.9rem;
+  background: transparent;
 }
 
 #chat-form button {
   padding: 10px;
   border: none;
-  background: #333;
-  color: #fff;
+  background: transparent;
+  color: #0095f6; 
+  font-weight: 700;
   cursor: pointer;
-  border-radius: 0 3px 3px 0;
+  font-size: 0.9rem;
+}
+
+#chat-form button:hover {
+  color: #00376b;
 }
