@@ -65,9 +65,10 @@ body {
 .chat-messages ul li.sent {
   align-self: flex-end;
   background: linear-gradient(45deg, #f09433 5%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-  /* background: linear-gradient(to right, #0095f6, #0074cc); */
-  color: #fff;
+  background: linear-gradient(135deg, #0095f6, #0085e0, #0074cc, #0063b8, #0052a3);
+  color: white;
 }
+
 
 .chat-form-container {
   padding: 20px;

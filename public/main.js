@@ -56,7 +56,7 @@ socket.on('message', (msg) => {
     const ts = new Date(msg.timestamp || Date.now());
     const hours = ts.getHours().toString().padStart(2, '0');
     const minutes = ts.getMinutes().toString().padStart(2, '0');
-    timeSpan.textContent = `${hours}:${minutes}`;
+    timeSpan.textContent = `[${hours}:${minutes}]`;
     timeSpan.classList.add('timestamp');
 
     li.appendChild(textSpan);
