@@ -1,6 +1,3 @@
-Here’s a polished **README.md** you can use for your GitHub repo. I wrote it to fully explain your chat app, its features, and how it works:
-
-````markdown
 # Chat App
 
 A simple real-time chat application built with **HTML**, **CSS**, **JS**, **Node.js**, **Express**, **Socket.io**, and **MongoDB**. This app allows multiple authorized users to send and receive messages instantly, with features like login authentication, message timestamps, and colored message bubbles per user.
