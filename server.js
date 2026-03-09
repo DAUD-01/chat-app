@@ -36,9 +36,9 @@ const Message = require('./models/Message');
 
 // Hardcoded users (username: password)
 const users = {
-    "dawood": "pass1",
-    "rayyan": "pass2",
-    "liyyana": "pass3"
+    "dawood": "pass",
+    "user2": "password123",
+    "user3": "password321"
 };
 
 // Middleware to parse form data
