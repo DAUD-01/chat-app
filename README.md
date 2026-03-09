@@ -80,35 +80,38 @@ A simple real-time chat application built with **HTML**, **CSS**, **JS**, **Node
 
 ## Setup & Running
 
-1. Clone the repository:  
-   ```bash
-   git clone <repo-url>
-   cd chat-app
-````
+### 1. Clone the repository
 
-2. Install dependencies:
+```bash
+git clone <repo-url>
+cd chat-app
+```
 
-   ```bash
-   npm install
-   ```
+### 2. Install dependencies
 
-3. Add a `.env` file with your MongoDB URI:
+```bash
+npm install
+```
 
-   ```
-   MONGO_URI=<your-mongodb-connection-string>
-   ```
+### 3. Add environment variables
 
-4. Run the app:
+Create a `.env` file in the root directory and add your MongoDB URI:
 
-   ```bash
-   npm start
-   ```
+```env
+MONGO_URI=<your-mongodb-connection-string>
+```
 
-5. Open in browser:
+### 4. Run the app
 
-   ```
-   http://localhost:3000
-   ```
+```bash
+npm start
+```
+
+### 5. Open in browser
+
+```
+http://localhost:3000
+```
 
 ---
 
@@ -125,4 +128,6 @@ chat-app/
 ├─ .env
 ├─ package.json
 └─ server.js
+```
+
 ```
