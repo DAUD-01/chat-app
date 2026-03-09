@@ -13,7 +13,19 @@
     
 </head>
 <body>
-    <div class="chat-container">
+
+<div id="login-container">
+  <form id="login-form">
+    <h2>Login</h2>
+    <input type="text" name="username" placeholder="Username" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+    <p id="login-error" style="color:red;"></p>
+  </form>
+</div>
+
+
+    <div class="chat-container" style="display:none;">
       <header class="chat-header">
         <h1>Chat App</h1>
       </header>

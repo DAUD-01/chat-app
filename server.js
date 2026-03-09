@@ -33,6 +33,27 @@ const io = new Server(server);
 
 const Message = require('./models/Message');
 
+// Hardcoded users (username: password)
+const users = {
+    "dawood": "pass1",
+    "rayyan": "pass2",
+    "liyyana": "pass3"
+};
+
+// Middleware to parse form data
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Login endpoint
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    if (users[username] && users[username] === password) {
+        res.send({ success: true, username }); // send back username
+    } else {
+        res.send({ success: false, message: 'Invalid username or password' });
+    }
+});
+
 io.on('connection', (socket) => {
     console.log('A user connected');
 
@@ -58,3 +79,5 @@ server.listen(PORT, () => console.log(`Server running on http://localhost:${PORT
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
+
+
