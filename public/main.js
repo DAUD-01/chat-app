@@ -25,7 +25,7 @@ chatMessages.appendChild(ul);
 
 // });
 
-// Use myUsername instead of username
+
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     const msgText = message.value.trim();
@@ -54,8 +54,9 @@ socket.on('message', (msg) => {
 socket.on('messageHistory', (messages) => { // to load history of messages
     messages.forEach(msg => {
         const li = document.createElement('li');
-        li.textContent = `${msg.sender}: ${msg.text}`;
-        if(msg.sender === myUsername) li.classList.add('sent'); // changed from username
+        const time = new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        li.textContent = `${msg.sender} [${time}]: ${msg.text}`;
+        if(msg.sender === myUsername) li.classList.add('sent');
         ul.appendChild(li);
     });
     chatMain.scrollTop = chatMain.scrollHeight;
