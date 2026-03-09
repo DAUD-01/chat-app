@@ -130,4 +130,3 @@ chat-app/
 └─ server.js
 ```
 
-```
