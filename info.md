@@ -2,7 +2,7 @@ chat-app/
 │
 ├── package.json          
 ├── .env                  # PORT, MONGO_URI, etc.
-├── server.js             # Node.js + Express + Socket.io
+├── server.js             # Node.js + Express +Socket.io
 │
 ├── src/                  # Front-end (Parcel entry)
 │   ├── index.html        
