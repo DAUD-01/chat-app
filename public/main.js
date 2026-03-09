@@ -83,7 +83,7 @@ socket.on('messageHistory', (messages) => {
 
         // Create a span for timestamp
         const timeSpan = document.createElement('span');
-        const ts = new Date(msg.timestamp); // make sure your Message model has timestamp
+        const ts = new Date(msg.timestamp);
         const hours = ts.getHours().toString().padStart(2, '0');
         const minutes = ts.getMinutes().toString().padStart(2, '0');
         timeSpan.textContent = ` [${hours}:${minutes}]`;
