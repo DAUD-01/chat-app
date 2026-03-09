@@ -5,8 +5,8 @@ const chatMain = document.querySelector(".chat-main");
 const socket = io(); 
 const userColors = {
     "dawood": "sent",
-    "rayyan": "sent",
-    "liyyana": "sent",
+    "user1": "sent",
+    "user2": "sent",
     
 };
 // let username = prompt("Enter your name:");
