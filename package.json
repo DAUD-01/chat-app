@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node server.js"
   },
+  "engines": {
+  "node": ">=18"
+},
   "author": "Dawood Sardar",
   "license": "ISC",
   "type": "commonjs",
