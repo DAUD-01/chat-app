@@ -104,3 +104,15 @@ body {
 #chat-form button:hover {
   color: #00376b;
 }
+
+.timestamp {
+    font-size: 0.7rem;
+    color: hsl(0, 0%, 30%);
+    margin-left: 6px;
+}
+
+.sent .timestamp {
+    font-size: 0.7rem;
+    color: hsl(0, 0%, 85%);
+    margin-left: 6px;
+}

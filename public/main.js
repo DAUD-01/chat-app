@@ -3,6 +3,12 @@ const form = document.getElementById("chat-form");
 const chatMessages = document.querySelector(".chat-messages");
 const chatMain = document.querySelector(".chat-main");
 const socket = io(); 
+const userColors = {
+    "dawood": "sent",
+    "rayyan": "sent",
+    "liyyana": "sent",
+    
+};
 // let username = prompt("Enter your name:");
 // if (!username) username = "Anonymous";
 
@@ -42,21 +48,55 @@ form.addEventListener("submit", (e) => {
 
 socket.on('message', (msg) => {
     const li = document.createElement('li');
-    li.textContent = `${msg.sender}: ${msg.text}`;
 
-    // Add class if the message is from me
-    if (msg.sender === myUsername) li.classList.add('sent'); // changed from username
+    const textSpan = document.createElement('span');
+    textSpan.textContent = `${msg.sender}: ${msg.text}`;
+
+    const timeSpan = document.createElement('span');
+    const ts = new Date(msg.timestamp || Date.now());
+    const hours = ts.getHours().toString().padStart(2, '0');
+    const minutes = ts.getMinutes().toString().padStart(2, '0');
+    timeSpan.textContent = `${hours}:${minutes}`;
+    timeSpan.classList.add('timestamp');
+
+    li.appendChild(textSpan);
+    li.appendChild(timeSpan);
+
+    if (msg.sender === myUsername || userColors[msg.sender]) {
+        li.classList.add(userColors[msg.sender]);
+    }
 
     ul.appendChild(li);
     chatMain.scrollTop = chatMain.scrollHeight;
 });
 
-socket.on('messageHistory', (messages) => { // to load history of messages
+
+// messageHistory listener
+
+socket.on('messageHistory', (messages) => { 
     messages.forEach(msg => {
         const li = document.createElement('li');
-        const time = new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        li.textContent = `${msg.sender} [${time}]: ${msg.text}`;
-        if(msg.sender === myUsername) li.classList.add('sent');
+
+        // Create a span for the message text
+        const textSpan = document.createElement('span');
+        textSpan.textContent = `${msg.sender}: ${msg.text}`;
+
+        // Create a span for timestamp
+        const timeSpan = document.createElement('span');
+        const ts = new Date(msg.timestamp); // make sure your Message model has timestamp
+        const hours = ts.getHours().toString().padStart(2, '0');
+        const minutes = ts.getMinutes().toString().padStart(2, '0');
+        timeSpan.textContent = ` [${hours}:${minutes}]`;
+        timeSpan.classList.add('timestamp');
+
+        li.appendChild(textSpan);
+        li.appendChild(timeSpan);
+
+        // Apply class based on username
+        if (msg.sender === myUsername || userColors[msg.sender]) {
+            li.classList.add(userColors[msg.sender]);
+        }
+
         ul.appendChild(li);
     });
     chatMain.scrollTop = chatMain.scrollHeight;

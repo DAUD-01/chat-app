@@ -54,30 +54,32 @@ app.post('/login', (req, res) => {
     }
 });
 
-io.on('connection', (socket) => {
-    console.log('A user connected');
-
-    // Load last 50 messages
-    Message.find().sort({ timestamp: 1 }).limit(50).then(messages => {
-        socket.emit('messageHistory', messages);
-    });
-
-    socket.on('chatMessage', async (msg) => {
-        const message = new Message(msg);
-        await message.save();
-        io.emit('message', msg);
-    });
-
-    socket.on('disconnect', () => {
-        console.log('A user disconnected');
-    });
-});
-
-server.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-
-// Connect to MongoDB (modern Mongoose, no options needed)
 mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log(err));
+    .then(() => {
+        console.log('MongoDB connected');
 
+        // Start server only after DB is connected
+        server.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+
+        io.on('connection', (socket) => {
+            console.log('A user connected');
+
+            // Load last 50 messages
+            Message.find().sort({ timestamp: 1 }).limit(50).then(messages => {
+                socket.emit('messageHistory', messages);
+            });
+
+            socket.on('chatMessage', async (msg) => {
+                const message = new Message(msg);
+                await message.save();
+                io.emit('message', msg);
+            });
+
+            socket.on('disconnect', () => {
+                console.log('A user disconnected');
+            });
+        });
+
+    })
+    .catch(err => console.log(err));
 
