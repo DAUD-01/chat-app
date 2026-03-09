@@ -49,3 +49,13 @@ socket.on('message', (msg) => {
     ul.appendChild(li);
     chatMain.scrollTop = chatMain.scrollHeight;
 });
+
+socket.on('messageHistory', (messages) => { // to load history of messages
+    messages.forEach(msg => {
+        const li = document.createElement('li');
+        li.textContent = `${msg.sender}: ${msg.text}`;
+        if(msg.sender === username) li.classList.add('sent');
+        ul.appendChild(li);
+    });
+    chatMain.scrollTop = chatMain.scrollHeight;
+});

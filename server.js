@@ -1,7 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const http = require('http');       // Node HTTP server
 const { Server } = require('socket.io'); // Socket.io
+const mongoose = require('mongoose'); // connecting mongoose
 
 const app = express();
 const PORT = 3000;
@@ -13,20 +15,46 @@ app.use(express.static(path.join(__dirname, 'public')));
 const server = http.createServer(app);
 const io = new Server(server);
 
-// Listen for clients connecting
+// // Listen for clients connecting
+// io.on('connection', (socket) => {
+//     console.log('A user connected');
+
+//     // Listen for chat messages from this client
+//     socket.on('chatMessage', (msg) => {
+//         // Broadcast message to all clients
+//         io.emit('message', msg);
+//     });
+
+//     // Listen for disconnect
+//     socket.on('disconnect', () => {
+//         console.log('A user disconnected');
+//     });
+// });
+
+const Message = require('./models/Message');
+
 io.on('connection', (socket) => {
     console.log('A user connected');
 
-    // Listen for chat messages from this client
-    socket.on('chatMessage', (msg) => {
-        // Broadcast message to all clients
+    // Load last 50 messages
+    Message.find().sort({ timestamp: 1 }).limit(50).then(messages => {
+        socket.emit('messageHistory', messages);
+    });
+
+    socket.on('chatMessage', async (msg) => {
+        const message = new Message(msg);
+        await message.save();
         io.emit('message', msg);
     });
 
-    // Listen for disconnect
     socket.on('disconnect', () => {
         console.log('A user disconnected');
     });
 });
 
 server.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+
+// Connect to MongoDB (modern Mongoose, no options needed)
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.log(err));
