@@ -51,7 +51,7 @@ body {
   font-size: 0.95rem;
   line-height: 1.4;
   word-wrap: break-word;
-  border: none; /* Removed the dashed border */
+  border: none; 
 }
 
 /* Style for received messages (Gray) */
@@ -61,7 +61,7 @@ body {
   color: #262626;
 }
 
-/* Style for sent messages (Blue/Purple Gradient) */
+/* Style for sent messages  */
 .chat-messages ul li.sent {
   align-self: flex-end;
   background: linear-gradient(45deg, #f09433 5%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
@@ -79,7 +79,7 @@ body {
   display: flex;
   align-items: center;
   border: 1px solid #dbdbdb;
-  border-radius: 25px; /* Rounded pill input */
+  border-radius: 25px; 
   padding: 5px 15px;
 }
 
