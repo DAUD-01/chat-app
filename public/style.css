@@ -176,3 +176,122 @@ body {
     margin-left: 4px;
   }
 }
+
+/* scrollbars for chat messages */
+
+::-webkit-scrollbar {
+    width: 8px; /* slim scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    border: 2px solid #0063b8; 
+}
+
+
+.chat-header {
+    position: relative; /* needed for absolute button */
+    text-align: center; /* keeps title centered */
+    padding: 10px;
+}
+
+/* button on left */
+#darkModeToggle {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    padding: 4px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    background: transparent;
+    font-size: 1.7rem;
+
+}
+
+
+/* Dark mode for the body and chat container */
+body.dark-mode {
+    background: #000; /* AMOLED black */
+    color: #fff;
+}
+
+/* Dark mode for chat container */
+.chat-container.dark-mode {
+    background: #000; /* AMOLED black */
+    border: 1px solid #333; /* subtle border */
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05), /* soft outer glow */
+                0 0 20px rgba(255, 255, 255, 0.03);
+}
+
+.chat-header.dark-mode {
+    background: #000;
+    color: #fff;
+    border-bottom: 1px solid #444; /* slightly brighter for separation */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.02);
+}
+
+.chat-main.dark-mode {
+    background: #000;
+}
+
+.chat-form-container.dark-mode {
+    background: #000;
+    border-top: 1px solid #333;
+    box-shadow: 0 -2px 8px rgba(255, 255, 255, 0.02);
+}
+
+
+input.dark-mode {
+  color: white;
+}
+
+/* Message bubbles */
+.chat-messages ul li.dark-mode.received {
+    background-color: #111;
+    color: #fff;
+}
+
+
+.chat-messages ul li.dark-mode.sent {
+    background: linear-gradient(45deg, #f09433 5%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: #fff;
+    box-shadow: 0 0 8px rgba(255, 100, 100, 0.4);
+}
+
+/* Timestamp color for dark mode */
+.timestamp.dark-mode {
+    color: #bbb;
+}
+
+/* customizing side bar */
+
+/* Dark mode scrollbars for chat messages */
+.chat-main.dark-mode::-webkit-scrollbar {
+    width: 8px; /* slim scrollbar */
+}
+
+.chat-main.dark-mode::-webkit-scrollbar-track {
+    background: #111; 
+    border-radius: 4px;
+}
+
+.chat-main.dark-mode::-webkit-scrollbar-thumb {
+    background: #444; 
+    border-radius: 4px;
+    border: 2px solid #111; 
+}
+
+.chat-main.dark-mode::-webkit-scrollbar-thumb:hover {
+    background: #666; 
+}

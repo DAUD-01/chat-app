@@ -132,3 +132,21 @@ loginForm.addEventListener('submit', async (e) => {
         document.getElementById('login-error').textContent = data.message;
     }
 });
+
+// Dark theme toggle
+
+const darkModeToggle = document.getElementById('darkModeToggle');
+
+darkModeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    document.querySelector('.chat-container').classList.toggle('dark-mode');
+    document.querySelector('.chat-header').classList.toggle('dark-mode');
+    document.querySelector('.chat-main').classList.toggle('dark-mode');
+    document.querySelector('.chat-form-container').classList.toggle('dark-mode');
+    document.querySelector('#chat-form').classList.toggle('dark-mode');
+
+    document.querySelectorAll('.chat-messages ul li').forEach(li => {
+        li.classList.toggle('dark-mode');
+    });
+    document.querySelectorAll('.timestamp').forEach(ts => ts.classList.toggle('dark-mode'));
+});
