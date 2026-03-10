@@ -3,150 +3,86 @@ const form = document.getElementById("chat-form");
 const chatMessages = document.querySelector(".chat-messages");
 const chatMain = document.querySelector(".chat-main");
 const socket = io(); 
-const userColors = {
-    "dawood": "sent",
-    "user1": "sent",
-    "user2": "sent",
-    
-};
-// let username = prompt("Enter your name:");
-// if (!username) username = "Anonymous";
 
 const ul = document.createElement("ul");
 chatMessages.appendChild(ul);
-
-// form.addEventListener("submit", (e) => {
-//     e.preventDefault();
-
-//     const msgText = message.value.trim();
-//     if (msgText === "" || !msgText) return;
-
-//     const li = document.createElement("li");
-//     li.textContent = msgText;
-
-//     ul.appendChild(li);
-
-//     message.value = "";
-//     chatMain.scrollTop = chatMain.scrollHeight;
-
-// });
-
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     const msgText = message.value.trim();
     if (!msgText) return;
 
-    // Send object with text and sender
     socket.emit('chatMessage', {
-        sender: myUsername, // changed from username
+        sender: myUsername,
         text: msgText
     });
 
     message.value = "";
 });
 
-socket.on('message', (msg) => {
-    const li = document.createElement('li');
+function createMessageElement(msg) {
+    const li = document.createElement("li");
 
-    const textSpan = document.createElement('span');
+    // Apply sent or received based on sender
+    if (msg.sender === myUsername) {
+        li.classList.add("sent");
+    } else {
+        li.classList.add("received");
+    }
+
+    const textSpan = document.createElement("span");
     textSpan.textContent = `${msg.sender}: ${msg.text}`;
 
-    const timeSpan = document.createElement('span');
+    const timeSpan = document.createElement("span");
+    timeSpan.classList.add("timestamp");
     const ts = new Date(msg.timestamp || Date.now());
-    const hours = ts.getHours().toString().padStart(2, '0');
-    const minutes = ts.getMinutes().toString().padStart(2, '0');
-    timeSpan.textContent = `[${hours}:${minutes}]`;
-    timeSpan.classList.add('timestamp');
+    const hours = ts.getHours().toString().padStart(2, "0");
+    const minutes = ts.getMinutes().toString().padStart(2, "0");
+    timeSpan.textContent = ` [${hours}:${minutes}]`;
 
     li.appendChild(textSpan);
     li.appendChild(timeSpan);
 
-    if (msg.sender === myUsername) {
-        li.classList.add('sent'); // Only for messages sent by me
-    } else {
-        li.classList.add('received'); 
-    }
-
     ul.appendChild(li);
     chatMain.scrollTop = chatMain.scrollHeight;
+}
+
+// New message from server
+socket.on("message", (msg) => {
+    createMessageElement(msg);
 });
 
-
-// messageHistory listener
-
-socket.on('messageHistory', (messages) => { 
-    messages.forEach(msg => {
-        const li = document.createElement('li');
-
-        // Create a span for the message text
-        const textSpan = document.createElement('span');
-        textSpan.textContent = `${msg.sender}: ${msg.text}`;
-
-        // Create a span for timestamp
-        const timeSpan = document.createElement('span');
-        const ts = new Date(msg.timestamp);
-        const hours = ts.getHours().toString().padStart(2, '0');
-        const minutes = ts.getMinutes().toString().padStart(2, '0');
-        timeSpan.textContent = ` [${hours}:${minutes}]`;
-        timeSpan.classList.add('timestamp');
-
-        li.appendChild(textSpan);
-        li.appendChild(timeSpan);
-
-        // Apply class based on username
-        if (msg.sender === myUsername) {
-            li.classList.add('sent'); // Only for messages sent by me
-        } else {
-            li.classList.add('received'); 
-        }
-
-        ul.appendChild(li);
-    });
-    chatMain.scrollTop = chatMain.scrollHeight;
+// Load message history
+socket.on("messageHistory", (messages) => {
+    messages.forEach(msg => createMessageElement(msg));
 });
 
-// Login Page 
+// Login
+const loginForm = document.getElementById("login-form");
+const loginContainer = document.getElementById("login-container");
+const chatContainer = document.querySelector(".chat-container");
+let myUsername = "";
 
-const loginForm = document.getElementById('login-form');
-const loginContainer = document.getElementById('login-container');
-const chatContainer = document.querySelector('.chat-container');
-let myUsername = ''; // store username for later messages
-
-loginForm.addEventListener('submit', async (e) => {
+loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const formData = new FormData(loginForm);
-    const res = await fetch('/login', {
-        method: 'POST',
+    const res = await fetch("/login", {
+        method: "POST",
         body: new URLSearchParams(formData)
     });
     const data = await res.json();
     if (data.success) {
         myUsername = data.username;
-        loginContainer.style.display = 'none';
-        chatContainer.style.display = 'flex';
-
-        socket.emit('requestHistory');
-        
+        loginContainer.style.display = "none";
+        chatContainer.style.display = "flex";
+        socket.emit("requestHistory");
     } else {
-        document.getElementById('login-error').textContent = data.message;
+        document.getElementById("login-error").textContent = data.message;
     }
 });
 
-// Dark theme toggle
-
-const darkModeToggle = document.getElementById('darkModeToggle');
-
-darkModeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    document.querySelector('.chat-container').classList.toggle('dark-mode');
-    document.querySelector('.chat-header').classList.toggle('dark-mode');
-    document.querySelector('.chat-main').classList.toggle('dark-mode');
-    document.querySelector('.chat-form-container').classList.toggle('dark-mode');
-    document.querySelector('#chat-form').classList.toggle('dark-mode');
-
-    document.querySelectorAll('.chat-messages ul li').forEach(li => {
-        li.classList.toggle('dark-mode');
-    });
-    document.querySelectorAll('.timestamp').forEach(ts => ts.classList.toggle('dark-mode'));
+// Dark mode toggle
+const darkModeToggle = document.getElementById("darkModeToggle");
+darkModeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
 });

@@ -1,6 +1,6 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: #fafafa; 
+  background: #fafafa;
   margin: 0;
   color: #262626;
 }
@@ -9,7 +9,7 @@ body {
   max-width: 550px;
   margin: 20px auto;
   background: #fff;
-  border: 1px solid #dbdbdb; 
+  border: 1px solid #dbdbdb;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -25,6 +25,8 @@ body {
   font-weight: 600;
   border-bottom: 1px solid #dbdbdb;
   font-size: 1.1rem;
+
+  position: relative;
 }
 
 .chat-main {
@@ -42,39 +44,33 @@ body {
   gap: 4px;
 }
 
-/* Base style for all message bubbles */
+/* message base */
+
 .chat-messages ul li {
   margin-bottom: 4px;
   padding: 8px 16px;
-  border-radius: 22px; /* Super rounded "pill" look */
+  border-radius: 22px;
   max-width: 70%;
   font-size: 0.95rem;
   line-height: 1.4;
   word-wrap: break-word;
-  border: none; 
 }
 
-/* Style for received messages (Gray) */
-.chat-messages ul li {
+/* received */
+
+.received {
   align-self: flex-start;
   background-color: #efefef;
   color: #262626;
 }
 
-/* Style for sent messages  */
-.chat-messages ul li.sent {
+/* sent */
+
+.sent {
   align-self: flex-end;
-  background: linear-gradient(45deg, #f09433 5%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
   background: linear-gradient(135deg, #0095f6, #0085e0, #0074cc, #0063b8, #0052a3);
   color: white;
 }
-
-.received {
-    align-self: flex-start;
-    background-color: #efefef;
-    color: #262626;
-}
-
 
 .chat-form-container {
   padding: 20px;
@@ -85,7 +81,7 @@ body {
   display: flex;
   align-items: center;
   border: 1px solid #dbdbdb;
-  border-radius: 25px; 
+  border-radius: 25px;
   padding: 5px 15px;
 }
 
@@ -102,196 +98,130 @@ body {
   padding: 10px;
   border: none;
   background: transparent;
-  color: #0095f6; 
+  color: #0095f6;
   font-weight: 700;
   cursor: pointer;
-  font-size: 0.9rem;
-}
-
-#chat-form button:hover {
-  color: #00376b;
 }
 
 .timestamp {
-    font-size: 0.7rem;
-    color: hsl(0, 0%, 30%);
-    margin-left: 6px;
+  font-size: 0.7rem;
+  color: hsl(0, 0%, 30%);
+  margin-left: 6px;
 }
 
 .sent .timestamp {
-    font-size: 0.7rem;
-    color: hsl(0, 0%, 85%);
-    margin-left: 6px;
+  color: hsl(0, 0%, 85%);
 }
 
-/* Responsive Design */
-/* Full screen for mobile devices */
 
-@media (max-width: 600px) {
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden; /* to prevent body scrolling */
-  }
+/* ================= BUTTON ================= */
 
-  .chat-container {
-    width: 100% !important;   
-    height: 100vh !important;  
-    border-radius: 0;          
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .chat-header {
-    font-size: 1rem;
-    padding: 10px;
-  }
-
-  .chat-main {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto; /* only chat messages scroll */
-  }
-
-  .chat-messages ul li {
-    max-width: 95%;
-    font-size: 0.95rem;
-    padding: 10px 12px;
-  }
-
-  #chat-form {
-    padding: 5px 10px;
-  }
-
-  #chat-form input, #chat-form button {
-    font-size: 0.9rem;
-    padding: 8px;
-  }
-
-  .timestamp {
-    font-size: 0.65rem;
-    margin-left: 4px;
-  }
+#darkModeToggle {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
 }
 
-/* scrollbars for chat messages */
+
+/* ================= SCROLLBAR ================= */
 
 ::-webkit-scrollbar {
-    width: 8px; /* slim scrollbar */
-}
-
-::-webkit-scrollbar-track {
-    border-radius: 4px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    border: 2px solid #0063b8; 
+  border-radius: 4px;
+  border: 2px solid hsl(207, 4%, 85%);
 }
 
 
-.chat-header {
-    position: relative; /* needed for absolute button */
-    text-align: center; /* keeps title centered */
-    padding: 10px;
-}
+/* ================= DARK MODE ================= */
 
-/* button on left */
-#darkModeToggle {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-
-    padding: 4px 8px;
-    border-radius: 8px;
-    cursor: pointer;
-
-    border: none;
-    cursor: pointer;
-    margin-right: 10px;
-    background: transparent;
-    font-size: 1.7rem;
-
-}
-
-
-/* Dark mode for the body and chat container */
 body.dark-mode {
-    background: #000; /* AMOLED black */
-    color: #fff;
+  background: hsl(0, 0%, 5%);
+  color: #fff;
 }
 
-/* Dark mode for chat container */
-.chat-container.dark-mode {
-    background: #000; /* AMOLED black */
-    border: 1px solid #333; /* subtle border */
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05), /* soft outer glow */
-                0 0 20px rgba(255, 255, 255, 0.03);
+body.dark-mode .chat-container {
+  background: #000;
+  border: 1px solid #333;
+  box-shadow:
+    0 0 15px rgba(255,255,255,0.05),
+    0 0 20px rgba(255,255,255,0.03);
 }
 
-.chat-header.dark-mode {
-    background: #000;
-    color: #fff;
-    border-bottom: 1px solid #444; /* slightly brighter for separation */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.02);
+body.dark-mode .chat-header {
+  background: #000;
+  color: #fff;
+  border-bottom: 1px solid #444;
 }
 
-.chat-main.dark-mode {
-    background: #000;
+body.dark-mode .chat-main {
+  background: #000;
 }
 
-.chat-form-container.dark-mode {
-    background: #000;
-    border-top: 1px solid #333;
-    box-shadow: 0 -2px 8px rgba(255, 255, 255, 0.02);
+body.dark-mode .chat-form-container {
+  background: #000;
+  border-top: 1px solid #333;
 }
 
+body.dark-mode #chat-form {
+  border: 1px solid #333;
+}
 
-input.dark-mode {
+body.dark-mode #chat-form input {
   color: white;
 }
 
-/* Message bubbles */
+
+/* message dark mode */
+
+body.dark-mode .received {
+  background: #111;
+  color: white;
+}
+
 .chat-messages ul li.dark-mode.received {
-    background-color: #111;
+    background-color: #222; /* slightly lighter than background */
     color: #fff;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.05); /* subtle glow */
+}
+
+body.dark-mode .sent {
+  background: linear-gradient(
+    45deg,
+    #f09433 5%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+
+  color: white;
+  box-shadow: 0 0 8px rgba(255,100,100,0.4);
+}
+
+body.dark-mode .timestamp {
+  color: #bbb;
 }
 
 
-.chat-messages ul li.dark-mode.sent {
-    background: linear-gradient(45deg, #f09433 5%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    color: #fff;
-    box-shadow: 0 0 8px rgba(255, 100, 100, 0.4);
+/* scrollbar dark */
+
+body.dark-mode .chat-main::-webkit-scrollbar-track {
+  background: #111;
 }
 
-/* Timestamp color for dark mode */
-.timestamp.dark-mode {
-    color: #bbb;
+body.dark-mode .chat-main::-webkit-scrollbar-thumb {
+  background: #444;
+  border: 2px solid #111;
 }
 
-/* customizing side bar */
-
-/* Dark mode scrollbars for chat messages */
-.chat-main.dark-mode::-webkit-scrollbar {
-    width: 8px; /* slim scrollbar */
-}
-
-.chat-main.dark-mode::-webkit-scrollbar-track {
-    background: #111; 
-    border-radius: 4px;
-}
-
-.chat-main.dark-mode::-webkit-scrollbar-thumb {
-    background: #444; 
-    border-radius: 4px;
-    border: 2px solid #111; 
-}
-
-.chat-main.dark-mode::-webkit-scrollbar-thumb:hover {
-    background: #666; 
+body.dark-mode .chat-main::-webkit-scrollbar-thumb:hover {
+  background: #666;
 }
