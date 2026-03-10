@@ -125,6 +125,9 @@ loginForm.addEventListener('submit', async (e) => {
         myUsername = data.username;
         loginContainer.style.display = 'none';
         chatContainer.style.display = 'flex';
+
+        socket.emit('requestHistory');
+        
     } else {
         document.getElementById('login-error').textContent = data.message;
     }

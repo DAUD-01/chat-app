@@ -49,6 +49,7 @@ app.use(express.json());
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
     if (users[username] && users[username] === password) {
+        
         res.send({ success: true, username }); // send back username
     } else {
         res.send({ success: false, message: 'Invalid username or password' });
@@ -66,9 +67,10 @@ mongoose.connect(process.env.MONGO_URI)
             console.log('A user connected');
 
             // Load last 50 messages
-            Message.find().sort({ timestamp: 1 }).limit(50).then(messages => {
-                socket.emit('messageHistory', messages);
-            });
+        socket.on('requestHistory', async () => {
+            const messages = await Message.find().sort({ timestamp: 1 }).limit(50);
+            socket.emit('messageHistory', messages);
+        });
 
             socket.on('chatMessage', async (msg) => {
                 const message = new Message(msg);
