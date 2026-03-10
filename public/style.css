@@ -123,3 +123,56 @@ body {
     color: hsl(0, 0%, 85%);
     margin-left: 6px;
 }
+
+/* Responsive Design */
+/* Full screen for mobile devices */
+
+@media (max-width: 600px) {
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* to prevent body scrolling */
+  }
+
+  .chat-container {
+    width: 100% !important;   
+    height: 100vh !important;  
+    border-radius: 0;          
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chat-header {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .chat-main {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto; /* only chat messages scroll */
+  }
+
+  .chat-messages ul li {
+    max-width: 95%;
+    font-size: 0.95rem;
+    padding: 10px 12px;
+  }
+
+  #chat-form {
+    padding: 5px 10px;
+  }
+
+  #chat-form input, #chat-form button {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .timestamp {
+    font-size: 0.65rem;
+    margin-left: 4px;
+  }
+}

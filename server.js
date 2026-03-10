@@ -36,7 +36,7 @@ const Message = require('./models/Message');
 
 // Hardcoded users (username: password)
 const users = {
-    "dawood": "pass",
+    "Daud": "pass",
     "user2": "password123",
     "user3": "password321"
 };
