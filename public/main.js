@@ -62,8 +62,10 @@ socket.on('message', (msg) => {
     li.appendChild(textSpan);
     li.appendChild(timeSpan);
 
-    if (msg.sender === myUsername || userColors[msg.sender]) {
-        li.classList.add(userColors[msg.sender]);
+    if (msg.sender === myUsername) {
+        li.classList.add('sent'); // Only for messages sent by me
+    } else {
+        li.classList.add('received'); 
     }
 
     ul.appendChild(li);
@@ -93,8 +95,10 @@ socket.on('messageHistory', (messages) => {
         li.appendChild(timeSpan);
 
         // Apply class based on username
-        if (msg.sender === myUsername || userColors[msg.sender]) {
-            li.classList.add(userColors[msg.sender]);
+        if (msg.sender === myUsername) {
+            li.classList.add('sent'); // Only for messages sent by me
+        } else {
+            li.classList.add('received'); 
         }
 
         ul.appendChild(li);

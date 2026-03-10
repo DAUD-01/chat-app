@@ -69,6 +69,12 @@ body {
   color: white;
 }
 
+.received {
+    align-self: flex-start;
+    background-color: #efefef;
+    color: #262626;
+}
+
 
 .chat-form-container {
   padding: 20px;
