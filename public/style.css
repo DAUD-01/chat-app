@@ -175,8 +175,8 @@ body.dark-mode #chat-form {
 
 /* Dark mode input */
 body.dark-mode #chat-form input {
-    background-color: #000;  /* dark but visible */
-    color: #fff;             /* white text */
+    background-color: #000;  
+    color: #fff;            
     border-radius: 25px;
     padding: 10px;
 }
