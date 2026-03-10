@@ -71,7 +71,7 @@ mongoose.connect(process.env.MONGO_URI)
             const messages = await Message.find()
                 .sort({ timestamp: -1 })
                 .limit(50) // to load only last 50 messages (corrected)
-                .sort(1);
+                .sort( {timestamp: 1} );
 
             socket.emit('messageHistory', messages);
         });
