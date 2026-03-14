@@ -56,4 +56,25 @@
     font-size: 1.4rem;
     padding: 3px 6px;
   }
+
+  #login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f0f2f5; /* soft background */
+}
+
+#login-form {
+    padding: 20px 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 250px;
+}
+
+#login-form h2 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
 }
