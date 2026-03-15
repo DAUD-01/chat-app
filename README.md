@@ -134,8 +134,10 @@ chat-app/
 ├─ models/
 │  └─ Message.js
 │
-├─ .env
+├─ node_modules/
 ├─ package.json
+├─ package-lock.json
+├─ .env
 └─ server.js
 
 ```
