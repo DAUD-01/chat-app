@@ -123,14 +123,21 @@ http://localhost:3000
 ```
 chat-app/
 ├─ public/
+│  ├─ css/
+│  │  ├─ style.css
+│  │  ├─ login.css
+│  │  ├─ darkmode.css
+│  │  └─ responsive.css
 │  ├─ index.html
-│  ├─ style.css
 │  └─ main.js
+│
 ├─ models/
 │  └─ Message.js
+│
 ├─ .env
 ├─ package.json
 └─ server.js
+
 ```
 
 ## Picture
