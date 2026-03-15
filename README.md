@@ -11,6 +11,7 @@ A simple real-time chat application built with **HTML**, **CSS**, **JS**, **Node
 - [Technologies Used](#technologies-used)  
 - [Setup & Running](#setup--running)  
 - [Folder Structure](#folder-structure)  
+- [Picture](#picture)
 
 ---
 
@@ -36,8 +37,10 @@ A simple real-time chat application built with **HTML**, **CSS**, **JS**, **Node
    - Each message shows the time it was sent (hour and minute).  
 
 6. **Responsive UI**  
-   - For now it is for destop only, but later it will be flexible to fit all display perfectly.  
+   - Works on most of the devices.  
 
+7. **Dark mode**
+   - Dark mode option available with amoled dark theme and vibrant colored chat bubbles. 
 ---
 
 ## Concept & Working
@@ -129,4 +132,8 @@ chat-app/
 ├─ package.json
 └─ server.js
 ```
+
+## Picture
+
+![Chat App screenshot](<Screenshot 2026-03-10 202017.png>)
 
