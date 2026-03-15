@@ -25,7 +25,7 @@ body.dark-mode .chat-main {
 
 body.dark-mode .chat-form-container {
   background: #000;
-  border-top: 1px solid #333;
+  /* border-top: 1px solid #333; */
 }
 
 body.dark-mode #chat-form {
