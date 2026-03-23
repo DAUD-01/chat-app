@@ -87,3 +87,29 @@ body.dark-mode .chat-main::-webkit-scrollbar-thumb {
 body.dark-mode .chat-main::-webkit-scrollbar-thumb:hover {
   background: #666;
 }
+
+/* dark-mode.css updates */
+
+/* Daud - Original Orange/Purple Flashy Gradient */
+body.dark-mode .user-daud {
+  background: linear-gradient(45deg, #f09433 10%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  box-shadow: 0 0 8px rgba(255,100,100,0.4);
+}
+
+/* Echo - Cosmic Blue/Purple Gradient */
+body.dark-mode .user-echo {
+  background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584);
+  box-shadow: 0 0 8px rgba(131, 58, 180, 0.4);
+}
+
+/* Pixel - Emerald/Teal Gradient */
+body.dark-mode .user-pixel {
+  background: linear-gradient(45deg, #10b981, #059669, #047857, #065f46);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
+/* Nova - Midnight Gold/Amber Gradient */
+body.dark-mode .user-nova {
+  background: linear-gradient(45deg, #f59e0b, #d97706, #b45309, #78350f);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}

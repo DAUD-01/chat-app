@@ -139,21 +139,31 @@ body {
 }
 
 
-/* body, 
-.chat-container, 
-.chat-header, 
-.chat-main, 
-.chat-form-container, 
-#chat-form, 
-#chat-form input, 
-.chat-messages
-.chat-messages ul li, 
-.received, 
-.sent, 
-.timestamp {
-  transition: background-color 0.4s ease, 
-              background 0.4s ease, 
-              color 0.4s ease, 
-              border-color 0.4s ease, 
-              box-shadow 0.4s ease;
-} */
+/* Specific User Colors - Light Mode */
+.user-daud {
+  background: linear-gradient(135deg, #0095f6, #0085e0, #0074cc, #0063b8, #0052a3);
+  color: white;
+}
+
+.user-echo {
+  background: #5851db; /* Deep Purple */
+  color: white;
+}
+
+.user-pixel {
+  background: #70c050; /* Fresh Green */
+  color: white;
+}
+
+.user-nova {
+  background: #fd1d1d; /* Vibrant Red/Pink */
+  color: white;
+}
+
+/* timestamps inside colored bubbles stay readable */
+.user-daud .timestamp, 
+.user-echo .timestamp, 
+.user-pixel .timestamp, 
+.user-nova .timestamp {
+  color: rgba(255, 255, 255, 0.8);
+}

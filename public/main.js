@@ -20,17 +20,23 @@ form.addEventListener("submit", (e) => {
     message.value = "";
 });
 
+// main.js - Update this function
 function createMessageElement(msg) {
     const li = document.createElement("li");
 
-    // Apply sent or received based on sender
+    // 1. Determine if it's sent or received for alignment
     if (msg.sender === myUsername) {
         li.classList.add("sent");
     } else {
         li.classList.add("received");
     }
 
+    // 2. Add the specific user class for coloring (lowercase to match CSS)
+    const userClass = `user-${msg.sender.toLowerCase()}`;
+    li.classList.add(userClass);
+
     const textSpan = document.createElement("span");
+
     textSpan.textContent = `${msg.sender}: ${msg.text}`;
 
     const timeSpan = document.createElement("span");
