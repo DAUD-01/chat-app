@@ -115,3 +115,19 @@ socket.on("chatCleared", () => {
     ul.innerHTML = ""; 
     console.log("Chat has been cleared by an administrator.");
 });
+
+// To allow enter button to send 
+const messageArea = document.getElementById("msg");
+
+messageArea.addEventListener("keydown", (e) => {
+    // Check if the key pressed is 'Enter'
+    if (e.key === "Enter") {
+        if (e.shiftKey) {
+            // Shift + Enter: Let the default behavior happen (new line)
+            return; 
+        } else {
+            e.preventDefault();
+            form.dispatchEvent(new Event("submit"));
+        }
+    }
+});
