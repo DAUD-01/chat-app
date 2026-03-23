@@ -47,16 +47,21 @@ body {
 
 #darkModeToggle {
   left: 10px;
-  font-size: 1.6rem;
-}
-
-#clearChatBtn {
-  right: 15px;
   font-size: 1.2rem;
   opacity: 0.7;
   color: var(--text-main);
 }
 
+#darkModeToggle:hover{
+  opacity: 1;
+}
+
+#clearChatBtn{
+  right: 15px;
+  font-size: 1.2rem;
+  opacity: 0.7;
+  color: var(--text-main);
+}
 #clearChatBtn:hover {
   opacity: 1;
 }
