@@ -1,121 +1,83 @@
-/* ================= DARK MODE ================= */
+/* ============================================================
+   DARK MODE SPECIFIC OVERRIDES
+   ============================================================ */
 
+/* Global Dark Mode Body */
 body.dark-mode {
-  background: hsl(0, 0%, 5%);
-  color: #fff;
+  background: var(--bg-main);
+  color: var(--text-main);
 }
 
+/* Container & Header */
 body.dark-mode .chat-container {
-  background: #000;
-  border: 1px solid #333;
+  background: var(--bg-container);
+  border: 1px solid var(--border-default);
   box-shadow:
-    0 0 15px rgba(255,255,255,0.05),
-    0 0 20px rgba(255,255,255,0.03);
+    0 0 15px var(--shadow-glow),
+    0 0 20px rgba(255, 255, 255, 0.03);
 }
 
 body.dark-mode .chat-header {
-  background: #000;
-  color: #fff;
-  border-bottom: 1px solid #444;
+  background: var(--bg-container);
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border-darker);
 }
 
 body.dark-mode .chat-main {
-  background: #000;
+  background: var(--bg-container);
 }
 
+/* Input Area */
 body.dark-mode .chat-form-container {
-  background: #000;
-  /* border-top: 1px solid #333; */
+  background: var(--bg-container);
 }
 
 body.dark-mode #chat-form {
-  border: 1px solid #333;
+  border: 1px solid var(--border-default);
 }
 
-/* Dark mode input */
 body.dark-mode #chat-form input {
-    background-color: #000;  
-    color: #fff;            
+    background-color: var(--bg-container);  
+    color: var(--text-main);            
     border-radius: 25px;
     padding: 10px;
 }
 
-
-/* message dark mode */
-
+/* Message Bubbles */
 body.dark-mode .received {
-  background: #111;
-  color: white;
+  background: var(--bg-received);
+  color: var(--text-white);
 }
 
+/* Slightly lighter received bubble for depth */
 .chat-messages ul li.dark-mode.received {
-    background-color: #222; /* slightly lighter than background */
-    color: #fff;
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.05); /* subtle glow */
+    background-color: var(--bg-received-alt); 
+    color: var(--text-white);
+    box-shadow: 0 0 6px var(--shadow-glow); 
 }
 
 body.dark-mode .sent {
-  background: linear-gradient(
-    45deg,
-    #f09433 10%,
-    #e6683c 25%,
-    #dc2743 50%,
-    #cc2366 75%,
-    #bc1888 100%
-  );
-
-  color: white;
-  box-shadow: 0 0 8px rgba(255,100,100,0.4);
+  background: var(--grad-sent);
+  color: var(--text-white);
+  box-shadow: 0 0 8px var(--shadow-sent);
 }
 
 body.dark-mode .timestamp {
-  color: #bbb;
+  color: var(--text-muted);
 }
 
-
-/* scrollbar dark */
-
+/* Scrollbar Dark Mode */
 body.dark-mode .chat-main::-webkit-scrollbar-track {
-  background: #111;
+  background: var(--sb-track);
 }
 
 body.dark-mode .chat-main::-webkit-scrollbar-thumb {
-  background: #444;
-  border: 2px solid #111;
+  background: var(--sb-thumb);
+  border: 2px solid var(--sb-track);
 }
 
-body.dark-mode .chat-main::-webkit-scrollbar-thumb:hover {
-  background: #666;
-}
-
-/* dark-mode.css updates */
-
-/* Daud - Original Orange/Purple Flashy Gradient */
-body.dark-mode .user-daud {
-  background: linear-gradient(45deg, #f09433 10%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-  box-shadow: 0 0 8px rgba(255,100,100,0.4);
-}
-
-/* Echo - Cosmic Blue/Purple Gradient */
-body.dark-mode .user-echo {
-  background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584);
-  box-shadow: 0 0 8px rgba(131, 58, 180, 0.4);
-}
-
-/* Pixel - Emerald/Teal Gradient */
-body.dark-mode .user-pixel {
-  background: linear-gradient(45deg, #10b981, #059669, #047857, #065f46);
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
-}
-
-/* Pixel - High-Contrast Emerald/Teal/Cyan */
-body.dark-mode .user-pixel {
-  background: linear-gradient(45deg, #22d3ee, #4ade80, #10b981, #064e3b);
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
-}
-
-/* Nova - Electric Blue & Deep Violet */
-body.dark-mode .user-nova {
-  background: linear-gradient(45deg, #00d2ff 20%, #3a7bd5 40%, #7b1fa2 70%, #12005e 100%);
-  box-shadow: 0 0 8px rgba(0, 210, 255, 0.4);
-}
+/* User Specific Glowing Effects */
+body.dark-mode .user-daud  { background: var(--grad-sent);  box-shadow: 0 0 8px var(--shadow-sent); }
+body.dark-mode .user-echo  { background: var(--grad-echo);  box-shadow: 0 0 8px rgba(131, 58, 180, 0.4); }
+body.dark-mode .user-pixel { background: var(--grad-pixel); box-shadow: 0 0 8px rgba(16, 185, 129, 0.4); }
+body.dark-mode .user-nova  { background: var(--grad-nova);  box-shadow: 0 0 8px rgba(0, 210, 255, 0.4); }

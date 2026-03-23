@@ -1,0 +1,54 @@
+:root {
+  /* --- Light Mode Palette --- */
+  --bg-main: #fafafa;
+  --bg-container: #ffffff;
+  --bg-secondary: #f0f2f5;
+  --bg-received: #efefef;
+  
+  --border-default: #dbdbdb;
+  --border-darker: #ccc;
+  
+  --text-main: #262626;
+  --text-muted: hsl(0, 0%, 30%);
+  --text-inv-muted: hsl(0, 0%, 85%);
+  --text-white: #ffffff;
+  
+  --accent-primary: #0095f6;
+  --accent-hover: #0074cc;
+  
+  /* Gradients */
+  --grad-sent: linear-gradient(135deg, #0095f6, #0085e0, #0074cc, #0063b8, #0052a3);
+  --grad-echo: #5851db;
+  --grad-pixel: #70c050;
+  --grad-nova: #fd1d1d;
+  
+  /* Scrollbar */
+  --sb-thumb: hsl(207, 4%, 85%);
+}
+
+/* --- Dark Mode Overrides --- */
+body.dark-mode {
+  --bg-main: hsl(0, 0%, 5%);
+  --bg-container: #000000;
+  --bg-secondary: #000000;
+  --bg-received: #111111;
+  --bg-received-alt: #222222;
+  
+  --border-default: #333333;
+  --border-darker: #444444;
+  
+  --text-main: #ffffff;
+  --text-muted: #bbbbbb;
+  
+  /* Sent Message Gradients (Dark Mode) */
+  --grad-sent: linear-gradient(45deg, #f09433 10%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  --grad-echo: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584);
+  --grad-pixel: linear-gradient(45deg, #22d3ee, #4ade80, #10b981, #064e3b);
+  --grad-nova: linear-gradient(45deg, #00d2ff 20%, #3a7bd5 40%, #7b1fa2 70%, #12005e 100%);
+  
+  /* Shadows & Accents */
+  --shadow-glow: rgba(255, 255, 255, 0.05);
+  --shadow-sent: rgba(255, 100, 100, 0.4);
+  --sb-thumb: #444444;
+  --sb-track: #111111;
+}

@@ -1,61 +1,48 @@
-/* ================= Responsive Design ================= */
+/* ============================================================
+   RESPONSIVE DESIGN (Max-width: 600px)
+   ============================================================ */
 
 @media (max-width: 600px) {
-
+  
+  /* Global Mobile Reset */
   html, body {
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
     overflow: hidden;
-    background: #fff;
+    background: var(--bg-main);
   }
 
-  /* FULL SCREEN CHAT */
-
+  /* Full Screen Chat Layout */
   .chat-container {
     width: 100%;
     height: 100svh !important;
     margin: 0;
-    border: none;        /* remove outer border */
+    border: none;
     border-radius: 0;
-    display: flex;
-    flex-direction: column;
   }
-
 
   .chat-header {
-    font-size: 1rem;
     padding: 10px;
+    font-size: 1rem;
   }
 
-  /* CHAT AREA */
-
   .chat-main {
-    flex: 1;
     padding: 10px;
-    overflow-y: auto;
   }
 
   .chat-messages ul li {
     max-width: 95%;
-    font-size: 0.95rem;
     padding: 10px 12px;
   }
 
-  /* INPUT AREA */
-
+  /* Mobile Input Area */
   .chat-form-container {
     padding: 10px;
-    background: #fff;
-    /* border-top: 1px solid #dbdbdb; keep separator */
   }
 
-  /* keep pill border */
-
   #chat-form {
-    border: 1px solid #dbdbdb;   /* keep this */
-    border-radius: 25px;         /* keep pill */
     padding: 5px 15px;
   }
 
@@ -70,54 +57,24 @@
     margin-left: 4px;
   }
 
-  /* DARK MODE */
-
-  #darkModeToggle {
-    font-size: 1.4rem;
-    padding: 3px 6px;
-  }
-
+  /* Mobile Dark Mode Adjustments */
   body.dark-mode .chat-container {
-    width: 100%;
-    height: 100svh !important;
-    margin: 0;
     border: none !important;
-    border-radius: 0;
     box-shadow: none;
   }
 
-
   body.dark-mode .chat-form-container {
-    border-top: none !important; 
+    border-top: none !important;
   }
 
-  body.dark-mode #chat-form {
-    border: 1px solid #333;  /* keep pill like light mode */
-    border-radius: 25px;
-  }
-
-  body.dark-mode #chat-form input {
-    background: #000;
-    color: #fff;
-    padding: 5px 15px;
-    
-  }
-
-  /* LOGIN SCREEN */
-
+  /* Mobile Login Screen */
   #login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100dvh;
-    background: #f0f2f5;
   }
 
   #login-form {
-    padding: 20px 15px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     width: 250px;
+    padding: 20px 15px;
   }
 
   #login-form h2 {
@@ -125,4 +82,3 @@
     font-size: 1.2rem;
   }
 }
-

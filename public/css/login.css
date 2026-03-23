@@ -1,66 +1,71 @@
+/* ============================================================
+   LOGIN SCREEN STYLES
+   ============================================================ */
+
 #login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #f0f2f5; /* soft background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: var(--bg-secondary);
 }
 
 #login-form {
-    background: #fff;
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    width: 320px;
-    text-align: center;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
+  width: 320px;
+  padding: 40px 30px;
+  background: var(--bg-container);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
 #login-form h2 {
-    margin-bottom: 20px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 1.5rem;
-    color: #262626;
+  margin-bottom: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1.5rem;
+  color: var(--text-main);
 }
 
+/* Form Inputs */
 #login-form input {
-    width: 100%;
-    padding: 12px 15px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 0.95rem;
-    outline: none;
-    transition: border 0.2s;
-    overflow: hidden;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  background: var(--bg-container);
+  color: var(--text-main);
+  border: 1px solid var(--border-darker);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.2s;
+  box-sizing: border-box;
 }
 
 #login-form input:focus {
-    border-color: #0095f6;
+  border-color: var(--accent-primary);
 }
 
+/* Submit Button */
 #login-form button {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    background: #0095f6;
-    color: #fff;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background 0.2s;
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: var(--accent-primary);
+  color: var(--text-white);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
 #login-form button:hover {
-    background: #0074cc;
+  background: var(--accent-hover);
 }
 
 #login-error {
-    margin-top: 10px;
-    font-size: 0.9rem;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--text-main);
 }
