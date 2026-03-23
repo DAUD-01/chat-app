@@ -185,9 +185,3 @@ body {
 #clearChatBtn:hover {
   opacity: 1;
 }
-
-/* Ensure it's visible in Dark Mode */
-body.dark-mode #clearChatBtn {
-  color: white;
-  filter: drop-shadow(0 0 2px rgba(255,255,255,0.3));
-}

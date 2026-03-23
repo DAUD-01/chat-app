@@ -113,3 +113,8 @@ body.dark-mode .user-nova {
   background: linear-gradient(45deg, #f59e0b, #d97706, #b45309, #78350f);
   box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
 }
+
+body.dark-mode #clearChatBtn {
+  color: white;
+  filter: drop-shadow(0 0 2px rgba(255,255,255,0.3));
+}
