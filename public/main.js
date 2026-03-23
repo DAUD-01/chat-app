@@ -92,3 +92,26 @@ const darkModeToggle = document.getElementById("darkModeToggle");
 darkModeToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
 });
+
+// To clear the chat by auth user
+
+const clearBtn = document.getElementById("clearChatBtn");
+
+clearBtn.addEventListener("click", () => {
+    // Only allow "Daud" to trigger the deletion
+    if (myUsername === "Daud") {
+        const confirmClear = confirm("Are you sure you want to delete ALL chat history? This cannot be undone.");
+        if (confirmClear) {
+            socket.emit('clearAllMessages');
+        }
+    } else {
+        // Show unauthorized message for Echo, Pixel, or Nova
+        alert("Access Denied: Only Daud has administrative privileges to clear chat history.");
+    }
+});
+
+// The listener for the actual UI wipe remains the same
+socket.on("chatCleared", () => {
+    ul.innerHTML = ""; 
+    console.log("Chat has been cleared by an administrator.");
+});

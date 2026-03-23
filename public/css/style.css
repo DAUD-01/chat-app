@@ -167,3 +167,27 @@ body {
 .user-nova .timestamp {
   color: rgba(255, 255, 255, 0.8);
 }
+
+/* style.css */
+#clearChatBtn {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+#clearChatBtn:hover {
+  opacity: 1;
+}
+
+/* Ensure it's visible in Dark Mode */
+body.dark-mode #clearChatBtn {
+  color: white;
+  filter: drop-shadow(0 0 2px rgba(255,255,255,0.3));
+}

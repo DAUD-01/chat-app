@@ -86,8 +86,24 @@ mongoose.connect(process.env.MONGO_URI)
             socket.on('disconnect', () => {
                 console.log('A user disconnected');
             });
+
+            socket.on('clearAllMessages', async () => {
+                try {
+                    await Message.deleteMany({}); 
+                    console.log("Database successfully cleared.");
+                    
+                    io.emit('chatCleared'); 
+                } catch (err) {
+                    console.error("Error clearing database:", err);
+                }
+});
+
         });
 
     })
     .catch(err => console.log(err));
+
+
+// server.js inside the io.on('connection') block
+
 
