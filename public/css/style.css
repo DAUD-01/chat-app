@@ -161,6 +161,7 @@ body {
   resize: none;
   overflow-y: hidden;
   font-size: 0.9rem;
+  font: inherit;
 }
 
 #chat-form button {

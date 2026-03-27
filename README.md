@@ -144,5 +144,4 @@ chat-app/
 
 ## Picture
 
-![Chat App screenshot](<Screenshot 2026-03-10 202017.png>)
-
+![Chat app picture](image.png)

@@ -42,22 +42,11 @@ body.dark-mode {
   
   /* Sent Message Gradients (Dark Mode) */
 
-  /* Neon Sunset (Sent) - High energy Pink to Gold */
   --grad-sent: linear-gradient(135deg, #8a2be2 0%, #00d2ff 100%);
-
-
-  /* Cyber Violet (Echo) - Electric Purple to Deep Blue */
-    --grad-echo: linear-gradient(135deg, #ff00cc 0%, #3333ff 100%);
-
-
-  /* Aurora Borealis (Pixel) - Mint to Electric Lime */
+  --grad-echo: linear-gradient(135deg, #ff00cc 0%, #3333ff 100%);
   --grad-pixel: linear-gradient(135deg, hsl(152, 100%, 40%) 0%, hsl(186, 100%, 60%) 100%);
-
-  /* Galactic Nova (Nova) - Deep Magenta to Royal Blue */
   --grad-nova: linear-gradient(135deg, #ff0080 0%, #ff8c00 100%);
 
-
-  
   /* Shadows & Accents */
   --shadow-glow: rgba(255, 255, 255, 0.05);
   --shadow-sent: rgba(255, 100, 100, 0.4);
