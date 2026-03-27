@@ -30,14 +30,13 @@ A simple real-time chat application built with **HTML**, **CSS**, **JS**, **Node
    - Messages are stored in **MongoDB**.  
 
 4. **Colored Message Bubbles**  
-   - Messages sent by the logged-in user are styled differently (blue bubble).  
-   - Other users’ messages appear in white to differentiate senders.  
+   - Messages sent by each user is of different color to differentiate betweeen users.  
 
 5. **Timestamps**  
    - Each message shows the time it was sent (hour and minute).  
 
 6. **Responsive UI**  
-   - Works on most of the devices.  
+   - Works on most of the devices.   
 
 7. **Dark mode**
    - Dark mode option available with amoled dark theme and vibrant colored chat bubbles. 
@@ -61,11 +60,6 @@ A simple real-time chat application built with **HTML**, **CSS**, **JS**, **Node
 3. **Message Persistence**  
    - Every message is saved in MongoDB with `sender`, `text`, and `timestamp`.  
    - When a new user joins, the server sends the last 50 messages to populate the chat history.  
-
-4. **Dynamic Styling**  
-   - Each user sees their own messages in a highlighted color (blue).  
-   - Other users’ messages appear in default white bubbles.  
-   - Timestamps are shown beside each message.  
 
 ---
 
