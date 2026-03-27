@@ -59,7 +59,11 @@ A simple real-time chat application built with **HTML**, **CSS**, **JS**, **Node
 
 3. **Message Persistence**  
    - Every message is saved in MongoDB with `sender`, `text`, and `timestamp`.  
-   - When a new user joins, the server sends the last 50 messages to populate the chat history.  
+   - When a new user joins, the server sends the last 50 messages to populate the chat history.
+  
+4. **Chat Deletion**
+   - Only authorized user has access to delete all the chat from the DB using the trash button at top right.
+   - Other users won't be able to delete the chat even if they click the button.
 
 ---
 
