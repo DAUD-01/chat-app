@@ -104,6 +104,3 @@ mongoose.connect(process.env.MONGO_URI)
     .catch(err => console.log(err));
 
 
-// server.js inside the io.on('connection') block
-
-

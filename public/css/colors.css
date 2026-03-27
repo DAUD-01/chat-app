@@ -17,10 +17,10 @@
   --accent-hover: #0074cc;
   
   /* Gradients */
-  --grad-sent: linear-gradient(135deg, #0095f6, #0085e0, #0074cc, #0063b8, #0052a3);
-  --grad-echo: #5851db;
-  --grad-pixel: #70c050;
-  --grad-nova: #fd1d1d;
+  --grad-sent: linear-gradient(135deg, #0095f6 10%, #0074cc 100%);
+  --grad-echo: linear-gradient(135deg, #7c3aed 10%, #6366f1 100%);
+  --grad-pixel: linear-gradient(135deg, #34d399 10%, #10b981 100%);
+  --grad-nova: linear-gradient(135deg, #f43f5e 10%, #fb7185 100%);
   
   /* Scrollbar */
   --sb-thumb: hsl(207, 4%, 85%);
@@ -41,10 +41,22 @@ body.dark-mode {
   --text-muted: #bbbbbb;
   
   /* Sent Message Gradients (Dark Mode) */
-  --grad-sent: linear-gradient(45deg, #f09433 10%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-  --grad-echo: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584);
-  --grad-pixel: linear-gradient(45deg, #22d3ee, #4ade80, #10b981, #064e3b);
-  --grad-nova: linear-gradient(45deg, #00d2ff 20%, #3a7bd5 40%, #7b1fa2 70%, #12005e 100%);
+
+  /* Neon Sunset (Sent) - High energy Pink to Gold */
+  --grad-sent: linear-gradient(135deg, #8a2be2 0%, #00d2ff 100%);
+
+
+  /* Cyber Violet (Echo) - Electric Purple to Deep Blue */
+    --grad-echo: linear-gradient(135deg, #ff00cc 0%, #3333ff 100%);
+
+
+  /* Aurora Borealis (Pixel) - Mint to Electric Lime */
+  --grad-pixel: linear-gradient(135deg, hsl(152, 100%, 40%) 0%, hsl(186, 100%, 60%) 100%);
+
+  /* Galactic Nova (Nova) - Deep Magenta to Royal Blue */
+  --grad-nova: linear-gradient(135deg, #ff0080 0%, #ff8c00 100%);
+
+
   
   /* Shadows & Accents */
   --shadow-glow: rgba(255, 255, 255, 0.05);
