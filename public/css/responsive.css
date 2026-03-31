@@ -3,9 +3,9 @@
    ============================================================ */
 
 @media (max-width: 600px) {
-  
   /* Global Mobile Reset */
-  html, body {
+  html,
+  body {
     margin: 0;
     padding: 0;
     height: 100%;

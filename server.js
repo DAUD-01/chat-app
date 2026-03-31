@@ -1,16 +1,15 @@
-require('dotenv').config();
-const express = require('express');
-const path = require('path');
-const http = require('http');       // Node HTTP server
-const { Server } = require('socket.io'); // Socket.io
-const mongoose = require('mongoose'); // connecting mongoose
-
+require("dotenv").config();
+const express = require("express");
+const path = require("path");
+const http = require("http"); // Node HTTP server
+const { Server } = require("socket.io"); // Socket.io
+const mongoose = require("mongoose"); // connecting mongoose
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Serve public folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Create HTTP server and attach Socket.io
 const server = http.createServer(app);
@@ -32,14 +31,14 @@ const io = new Server(server);
 //     });
 // });
 
-const Message = require('./models/Message');
+const Message = require("./models/Message");
 
 // Hardcoded users (username: password)
 const users = {
-    "Daud": "mango",
-    "Echo": "apple",
-    "Pixel": "banana",
-    "Nova": "grapes"
+  Daud: "mango",
+  Echo: "apple",
+  Pixel: "banana",
+  Nova: "grapes",
 };
 
 // Middleware to parse form data
@@ -47,60 +46,56 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Login endpoint
-app.post('/login', (req, res) => {
-    const { username, password } = req.body;
-    if (users[username] && users[username] === password) {
-        
-        res.send({ success: true, username }); // send back username
-    } else {
-        res.send({ success: false, message: 'Invalid username or password' });
-    }
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+  if (users[username] && users[username] === password) {
+    res.send({ success: true, username }); // send back username
+  } else {
+    res.send({ success: false, message: "Invalid username or password" });
+  }
 });
 
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => {
-        console.log('MongoDB connected');
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("MongoDB connected");
 
-        // Start server only after DB is connected
-        server.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+    // Start server only after DB is connected
+    server.listen(PORT, () =>
+      console.log(`Server running on http://localhost:${PORT}`),
+    );
 
-        io.on('connection', (socket) => {
-            console.log('A user connected');
+    io.on("connection", (socket) => {
+      console.log("A user connected");
 
-            // Load last 50 messages
-        socket.on('requestHistory', async () => {
-            const messages = await Message.find()
-                .sort({ timestamp: -1 })
-                .limit(50) // to load only last 50 messages (corrected)
-                
-            messages.reverse();    
-            socket.emit('messageHistory', messages);
-        });
+      // Load last 50 messages
+      socket.on("requestHistory", async () => {
+        const messages = await Message.find().sort({ timestamp: -1 }).limit(50); // to load only last 50 messages (corrected)
 
-            socket.on('chatMessage', async (msg) => {
-                const message = new Message(msg);
-                await message.save();
-                io.emit('message', msg);
-            });
+        messages.reverse();
+        socket.emit("messageHistory", messages);
+      });
 
-            socket.on('disconnect', () => {
-                console.log('A user disconnected');
-            });
+      socket.on("chatMessage", async (msg) => {
+        const message = new Message(msg);
+        await message.save();
+        io.emit("message", msg);
+      });
 
-            socket.on('clearAllMessages', async () => {
-                try {
-                    await Message.deleteMany({}); 
-                    console.log("Database successfully cleared.");
-                    
-                    io.emit('chatCleared'); 
-                } catch (err) {
-                    console.error("Error clearing database:", err);
-                }
-});
+      socket.on("disconnect", () => {
+        console.log("A user disconnected");
+      });
 
-        });
+      socket.on("clearAllMessages", async () => {
+        try {
+          await Message.deleteMany({});
+          console.log("Database successfully cleared.");
 
-    })
-    .catch(err => console.log(err));
-
-
+          io.emit("chatCleared");
+        } catch (err) {
+          console.error("Error clearing database:", err);
+        }
+      });
+    });
+  })
+  .catch((err) => console.log(err));

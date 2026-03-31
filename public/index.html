@@ -1,56 +1,91 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat App</title>
-    <link rel="stylesheet" href="css/colors.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="css/colors.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/dark-mode.css" />
     <script src="main.js" defer></script>
     <script src="/socket.io/socket.io.js"></script>
 
-      <!-- Favicon -->
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/6819/6819062.png" type="image/png">
-    
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="https://cdn-icons-png.flaticon.com/512/6819/6819062.png"
+      type="image/png"
+    />
+
     <!-- <script type="module" src="public/main.js"></script>
     <script type="module" src="./main.js"></script> -->
-    
-</head>
-<body>
+  </head>
+  <body>
+    <div id="login-container">
+      <form id="login-form">
+        <h2>Login</h2>
+        <input type="text" name="username" placeholder="Username" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <button type="submit">Login</button>
+        <p id="login-error" style="color: red"></p>
+      </form>
+    </div>
 
-<div id="login-container">
-  <form id="login-form">
-    <h2>Login</h2>
-    <input type="text" name="username" placeholder="Username" required />
-    <input type="password" name="password" placeholder="Password" required />
-    <button type="submit">Login</button>
-    <p id="login-error" style="color:red;"></p>
-  </form>
-</div>
-
-
-    <div class="chat-container" style="display:none;">
+    <div class="chat-container" style="display: none">
       <header class="chat-header">
-        <button id="darkModeToggle"><svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px" fill="gray"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z"/></svg></button>
+        <button id="darkModeToggle">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="35px"
+            viewBox="0 -960 960 960"
+            width="35px"
+            fill="gray"
+          >
+            <path
+              d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z"
+            />
+          </svg>
+        </button>
         <h1>Chat App</h1>
-        <button id="clearChatBtn" title="Clear All Messages"><svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px" fill="gray"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg></button>
+        <button id="clearChatBtn" title="Clear All Messages">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="35px"
+            viewBox="0 -960 960 960"
+            width="35px"
+            fill="gray"
+          >
+            <path
+              d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+            />
+          </svg>
+        </button>
       </header>
-    
+
       <main class="chat-main">
         <div class="chat-messages">
           <!-- ul is appended  here and inside it is li -->
-        </div> 
+        </div>
       </main>
-    
+
       <div class="chat-form-container">
         <form id="chat-form">
-          <textarea id="msg" type="text" placeholder="Enter message..." autocomplete="off"></textarea>
+          <textarea
+            id="msg"
+            type="text"
+            placeholder="Enter message..."
+            autocomplete="off"
+          ></textarea>
           <button type="submit" id="submit">Send</button>
         </form>
       </div>
     </div>
-</body>
+  </body>
 </html>

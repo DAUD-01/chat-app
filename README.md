@@ -6,61 +6,62 @@ A simple real-time chat application built with **HTML**, **CSS**, **JS**, **Node
 
 ## Table of Contents
 
-- [Features](#features)  
-- [Concept & Working](#concept--working)  
-- [Technologies Used](#technologies-used)  
-- [Setup & Running](#setup--running)  
-- [Folder Structure](#folder-structure)  
+- [Features](#features)
+- [Concept & Working](#concept--working)
+- [Technologies Used](#technologies-used)
+- [Setup & Running](#setup--running)
+- [Folder Structure](#folder-structure)
 - [Picture](#picture)
 
 ---
 
 ## Features
 
-1. **Login Authentication**  
-   - Only authorized users can access the chat.  
-   - Uses a hardcoded username-password combination for now.  
+1. **Login Authentication**
+   - Only authorized users can access the chat.
+   - Uses a hardcoded username-password combination for now.
 
-2. **Real-Time Messaging**  
-   - Users can send messages instantly.  
-   - Other users connected to the app receive the messages immediately.  
+2. **Real-Time Messaging**
+   - Users can send messages instantly.
+   - Other users connected to the app receive the messages immediately.
 
-3. **Message History**  
-   - Loads the last 50 messages when a user joins.  
-   - Messages are stored in **MongoDB**.  
+3. **Message History**
+   - Loads the last 50 messages when a user joins.
+   - Messages are stored in **MongoDB**.
 
-4. **Colored Message Bubbles**  
-   - Messages sent by each user is of different color to differentiate betweeen users.  
+4. **Colored Message Bubbles**
+   - Messages sent by each user is of different color to differentiate betweeen users.
 
-5. **Timestamps**  
-   - Each message shows the time it was sent (hour and minute).  
+5. **Timestamps**
+   - Each message shows the time it was sent (hour and minute).
 
-6. **Responsive UI**  
-   - Works on most of the devices.   
+6. **Responsive UI**
+   - Works on most of the devices.
 
 7. **Dark mode**
-   - Dark mode option available with amoled dark theme and vibrant colored chat bubbles. 
+   - Dark mode option available with amoled dark theme and vibrant colored chat bubbles.
+
 ---
 
 ## Concept & Working
 
-1. **Server (server.js)**  
-   - Runs an Express server and serves the frontend files.  
-   - Uses Socket.io for real-time communication.  
-   - Connects to MongoDB to store and retrieve messages.  
-   - Handles login authentication via `/login` endpoint.  
+1. **Server (server.js)**
+   - Runs an Express server and serves the frontend files.
+   - Uses Socket.io for real-time communication.
+   - Connects to MongoDB to store and retrieve messages.
+   - Handles login authentication via `/login` endpoint.
 
-2. **Client (main.js)**  
-   - Handles login form submission and stores the logged-in username.  
-   - Connects to the server via Socket.io.  
-   - Sends messages along with the sender and timestamp.  
-   - Receives messages from other users and appends them to the chat.  
-   - Applies `sent` class for messages from the current user.  
+2. **Client (main.js)**
+   - Handles login form submission and stores the logged-in username.
+   - Connects to the server via Socket.io.
+   - Sends messages along with the sender and timestamp.
+   - Receives messages from other users and appends them to the chat.
+   - Applies `sent` class for messages from the current user.
 
-3. **Message Persistence**  
-   - Every message is saved in MongoDB with `sender`, `text`, and `timestamp`.  
+3. **Message Persistence**
+   - Every message is saved in MongoDB with `sender`, `text`, and `timestamp`.
    - When a new user joins, the server sends the last 50 messages to populate the chat history.
-  
+
 4. **Chat Deletion**
    - Only authorized user has access to delete all the chat from the DB using the trash button at top right.
    - Other users won't be able to delete the chat even if they click the button.
@@ -69,13 +70,13 @@ A simple real-time chat application built with **HTML**, **CSS**, **JS**, **Node
 
 ## Technologies Used
 
-- **Node.js** - Backend runtime  
-- **Express** - Web server and routing  
-- **Socket.io** - Real-time messaging  
-- **MongoDB** - Database to store messages  
-- **Mongoose** - ODM for MongoDB  
-- **HTML/CSS/JS** - Frontend  
-- **dotenv** - Manage environment variables  
+- **Node.js** - Backend runtime
+- **Express** - Web server and routing
+- **Socket.io** - Real-time messaging
+- **MongoDB** - Database to store messages
+- **Mongoose** - ODM for MongoDB
+- **HTML/CSS/JS** - Frontend
+- **dotenv** - Manage environment variables
 
 ---
 
