@@ -54,7 +54,7 @@ mongoose
 
       // Load last 50 messages
       socket.on("requestHistory", async () => {
-        const messages = await Message.find().sort({ timestamp: -1 }).limit(50); // to load only last 50 messages
+        const messages = await Message.find().sort({ timestamp: -1 }).limit(50);
 
         messages.reverse();
         socket.emit("messageHistory", messages);
@@ -65,18 +65,20 @@ mongoose
           const message = new Message({
             sender: msg.sender,
             text: msg.text,
-            timeStamp: msg.timestamp,
+            timestamp: msg.timestamp || new Date(), // Fixed: lowercase 'timestamp' to match schema
           });
 
           await message.save();
 
+          // Fixed: Use broadcast so the sender (who rendered optimistically) doesn't get a duplicate
           socket.broadcast.emit("message", msg);
 
+          // Fixed: Send confirmation back to sender with correct ID casing
           socket.emit("messageAccepted", {
             tempID: msg.tempID,
           });
         } catch (error) {
-          console.error(err);
+          console.error("Error saving message:", error);
         }
       });
 

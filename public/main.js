@@ -7,22 +7,46 @@ const socket = io();
 const ul = document.createElement("ul");
 chatMessages.appendChild(ul);
 
+// Track pending messages
+let pendingMessages = JSON.parse(localStorage.getItem("pendingMessages")) || [];
+
+// Combined form submit listener
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const msgText = message.value.trim();
   if (!msgText) return;
 
-  socket.emit("chatMessage", {
+  // Create an object for temporary messages
+  const tempMsg = {
+    tempID: Date.now().toString(),
     sender: myUsername,
     text: msgText,
-  });
+    timestamp: new Date().toISOString(),
+    status: "pending",
+  };
 
+  // Render the message immediately to sender side (Optimistic UI)
+  createMessageElement(tempMsg);
+
+  // Save to local queue, and then try to send
+  saveAndSendMessage(tempMsg);
   message.value = "";
 });
+
+function saveAndSendMessage(msg) {
+  if (!socket.connected) {
+    // Fixed: Must push to the array before saving to localStorage
+    pendingMessages.push(msg);
+    localStorage.setItem("pendingMessages", JSON.stringify(pendingMessages));
+  } else {
+    socket.emit("chatMessage", msg);
+  }
+}
 
 function createMessageElement(msg) {
   const li = document.createElement("li");
 
+  // Fixed: Add temp ID attribute so we can find this element to remove the clock
   if (msg.tempID) {
     li.setAttribute("data-temp-id", msg.tempID);
   }
@@ -34,7 +58,7 @@ function createMessageElement(msg) {
     li.classList.add("received");
   }
 
-  // 2. Add the specific user class for coloring (lowercase to match CSS)
+  // 2. Add the specific user class for coloring
   const senderName = msg.sender || "Unknown";
   const userClass = `user-${senderName.toLowerCase()}`;
   li.classList.add(userClass);
@@ -43,15 +67,13 @@ function createMessageElement(msg) {
   textSpan.textContent = `${msg.sender}: ${msg.text}`;
 
   // Add clock icon if it is pending
-
   if (msg.status === "pending") {
     const statusIcon = document.createElement("span");
     statusIcon.classList.add("status-icon");
     statusIcon.innerHTML = `<svg 
-    xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#">
+    xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="currentColor">
     <path d="M320-160h320v-120q0-66-47-113t-113-47q-66 0-113 47t-47 113v120Zm273-407q47-47 47-113v-120H320v120q0 66 47 113t113 47q66 0 113-47ZM160-80v-80h80v-120q0-61 28.5-114.5T348-480q-51-32-79.5-85.5T240-680v-120h-80v-80h640v80h-80v120q0 61-28.5 114.5T612-480q51 32 79.5 85.5T720-280v120h80v80H160Zm320-80Zm0-640Z"/>
     </svg>`;
-
     li.appendChild(statusIcon);
   }
 
@@ -78,6 +100,35 @@ socket.on("message", (msg) => {
 socket.on("messageHistory", (messages) => {
   messages.forEach((msg) => createMessageElement(msg));
 });
+
+// Clearing the pending status
+socket.on("messageAccepted", (data) => {
+  // Fixed: Correct CSS selector for data attributes
+  const messageElement = document.querySelector(
+    `[data-temp-id="${data.tempID}"]`,
+  );
+  if (messageElement) {
+    const clock = messageElement.querySelector(".status-icon");
+    if (clock) clock.remove();
+  }
+});
+
+// Clear offline queue when the socket connects
+socket.on("connect", () => {
+  console.log("Reconnected! Syncing pending messages...");
+  const messagesToSync =
+    JSON.parse(localStorage.getItem("pendingMessages")) || [];
+
+  messagesToSync.forEach((msg) => {
+    socket.emit("chatMessage", msg);
+  });
+
+  localStorage.removeItem("pendingMessages");
+  pendingMessages = [];
+});
+
+// Login and other existing UI logic below...
+// (Keep your existing loginForm, darkModeToggle, clearBtn, and keydown listeners as they were)
 
 // Login
 const loginForm = document.getElementById("login-form");
@@ -154,7 +205,7 @@ messageArea.addEventListener("keydown", (e) => {
 
 // To track pending messages
 
-let pendingMessages = JSON.parse(localStorage.getItem("pendingMessages")) || [];
+pendingMessages = JSON.parse(localStorage.getItem("pendingMessages")) || [];
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
