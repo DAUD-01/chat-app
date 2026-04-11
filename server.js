@@ -80,25 +80,6 @@ mongoose
         }
       });
 
-      socket.on("syncOfflineMessages", async (messagesArray) => {
-        try {
-          const savedMessages = await Message.insertMany(messagesArray);
-
-          // Broadcast the new messages to other users
-          savedMessages.forEach((msg) => {
-            socket.broadcast.emit("message", msg);
-          });
-
-          // Tell the sender these specific messages are synced
-          socket.emit(
-            "syncComplete",
-            messagesArray.map((m) => m.tempId),
-          );
-        } catch (err) {
-          console.error("Sync error:", err);
-        }
-      });
-
       socket.on("disconnect", () => {
         console.log("A user disconnected");
       });
