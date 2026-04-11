@@ -23,6 +23,10 @@ form.addEventListener("submit", (e) => {
 function createMessageElement(msg) {
   const li = document.createElement("li");
 
+  if (msg.tempId) {
+    li.setAttribute("data-temp-id", msg.tempId);
+  }
+
   // 1. Determine if it's sent or received for alignment
   if (msg.sender === myUsername) {
     li.classList.add("sent");
