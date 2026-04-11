@@ -63,9 +63,9 @@ mongoose
       socket.on("chatMessage", async (msg) => {
         try {
           const message = new Message({
-            sender: msg.Sender,
+            sender: msg.sender,
             text: msg.text,
-            timeStamp: msg.timeStamp,
+            timeStamp: msg.timestamp,
           });
 
           await message.save();
