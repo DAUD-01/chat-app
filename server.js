@@ -15,22 +15,6 @@ app.use(express.static(path.join(__dirname, "public")));
 const server = http.createServer(app);
 const io = new Server(server);
 
-// // Listen for clients connecting
-// io.on('connection', (socket) => {
-//     console.log('A user connected');
-
-//     // Listen for chat messages from this client
-//     socket.on('chatMessage', (msg) => {
-//         // Broadcast message to all clients
-//         io.emit('message', msg);
-//     });
-
-//     // Listen for disconnect
-//     socket.on('disconnect', () => {
-//         console.log('A user disconnected');
-//     });
-// });
-
 const Message = require("./models/Message");
 
 // Hardcoded users (username: password)
