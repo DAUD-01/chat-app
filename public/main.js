@@ -166,4 +166,25 @@ form.addEventListener("submit", (e) => {
   message.value = " ";
 });
 
-function saveAndSendMessage(msg) {}
+function saveAndSendMessage(msg) {
+  // if the message is offline then it will stay in pending
+
+  if (!socket.connected) {
+    localStorage.setItem("pendingMessages", JSON.stringify(pendingMessages));
+  } else {
+    socket.emit("chatMessage", msg);
+  }
+}
+
+// clearing the pending status
+socket.on("messageAccepted", (data) => {
+  const messageElement = document.querySelector(
+    `[data-temp-id="${data.tempID}]`,
+  );
+  if (messageElement) {
+    messageElement.classList.remove("pending");
+
+    const clock = messageElement.querySelector(".status-icon");
+    if (clock) clock.remove();
+  }
+});
