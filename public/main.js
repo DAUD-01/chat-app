@@ -39,7 +39,7 @@ function createMessageElement(msg) {
 
   // Add clock icon if it is pending
 
-  if ((msg.status = "pending")) {
+  if (msg.status === "pending") {
     const statusIcon = document.createElement("span");
     statusIcon.classList.add("status-icon");
     statusIcon.innerHTML = `<svg 

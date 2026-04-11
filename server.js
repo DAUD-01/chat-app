@@ -54,7 +54,7 @@ mongoose
 
       // Load last 50 messages
       socket.on("requestHistory", async () => {
-        const messages = await Message.find().sort({ timestamp: -1 }).limit(50); // to load only last 50 messages (corrected)
+        const messages = await Message.find().sort({ timestamp: -1 }).limit(50); // to load only last 50 messages 
 
         messages.reverse();
         socket.emit("messageHistory", messages);
