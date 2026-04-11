@@ -135,3 +135,35 @@ messageArea.addEventListener("keydown", (e) => {
     }
   }
 });
+
+// To track pending messages
+
+let pendingMessages = JSON.parse(localStorage.getItem("pendingMessages")) || [];
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const msgText = message.value.trim();
+  if (!msgText) {
+    return;
+  }
+
+  // Create an object for temorary messages
+  const tempMsg = {
+    tempID: Date.now().toString(),
+    sender: myUsername,
+    text: msgText,
+    timestamp: new Date().toString(),
+    status: "pending",
+  };
+
+  // Render the message immediately to sender side
+
+  createMessageElement(tempMsg);
+
+  // Save to local queque, and then re try to send the message
+
+  saveAndSendMessage(tempMsg);
+  message.value = " ";
+});
+
+function saveAndSendMessage(msg) {}
