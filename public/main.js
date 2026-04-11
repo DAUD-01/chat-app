@@ -194,7 +194,7 @@ function saveAndSendMessage(msg) {
 // clearing the pending status
 socket.on("messageAccepted", (data) => {
   const messageElement = document.querySelector(
-    `[data-temp-id="${data.tempID}]`,
+    `[data-temp-id="${data.tempID}"]`,
   );
   if (messageElement) {
     messageElement.classList.remove("pending");
