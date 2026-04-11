@@ -61,9 +61,23 @@ mongoose
       });
 
       socket.on("chatMessage", async (msg) => {
-        const message = new Message(msg);
-        await message.save();
-        io.emit("message", msg);
+        try {
+          const message = new Message({
+            sender: msg.Sender,
+            text: msg.text,
+            timeStamp: msg.timeStamp,
+          });
+
+          await message.save();
+
+          socket.broadcast.emit("message", msg);
+
+          socket.emit("messageAccepted", {
+            tempId: msg.tempId,
+          });
+        } catch (error) {
+          console.error(err);
+        }
       });
 
       socket.on("disconnect", () => {
