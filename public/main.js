@@ -120,7 +120,7 @@ clearBtn.addEventListener("click", () => {
   } else {
     // Show unauthorized message for Echo, Pixel, or Nova
     alert(
-      "Access Denied: Only Daud has administrative privileges to clear chat history.",
+      "Access Denied: administrative privileges required to clear chat history.",
     );
   }
 });
