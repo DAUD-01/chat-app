@@ -35,7 +35,8 @@ function createMessageElement(msg) {
   }
 
   // 2. Add the specific user class for coloring (lowercase to match CSS)
-  const userClass = `user-${msg.sender.toLowerCase()}`;
+  const senderName = msg.sender || "Unknown";
+  const userClass = `user-${senderName.toLowerCase()}`;
   li.classList.add(userClass);
 
   const textSpan = document.createElement("span");
