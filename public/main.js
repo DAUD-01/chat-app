@@ -199,3 +199,19 @@ socket.on("messageAccepted", (data) => {
     if (clock) clock.remove();
   }
 });
+
+// Clear offline queue when the socket connects
+socket.on("connect", () => {
+  console.log("Reconnected! Syncing pending messages...");
+
+  const messagesToSync =
+    JSON.parse(localStorage.getItem("pendingMessages")) || [];
+
+  messagesToSync.forEach((msg) => {
+    socket.emit("chatMessage", msg);
+  });
+
+  // Clear the local queue
+  localStorage.removeItem("pendingMessages");
+  pendingMessages = [];
+});
