@@ -199,3 +199,68 @@ body {
   background-color: var(--sb-thumb);
   border-radius: 4px;
 }
+
+/* ===== Message Entry Animation ===== */
+li.sent {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeIn 0.25s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Status Icon */
+.status-icon {
+  display: inline-block;
+  height: 14px;
+  width: 14px;
+  opacity: 0.7;
+}
+
+.icon-wrapper {
+  display: inline-block;
+  animation: rotate 2s linear infinite;
+}
+
+.status-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: whitesmoke;
+  margin-right: 5px;
+  padding-right: 5px;
+  animation: sendPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes sendPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.status-icon.sent {
+  opacity: 0;
+  transform: scale(0.8);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}

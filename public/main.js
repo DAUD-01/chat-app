@@ -70,11 +70,18 @@ function createMessageElement(msg) {
   if (msg.status === "pending") {
     const statusIcon = document.createElement("span");
     statusIcon.classList.add("status-icon");
-    statusIcon.innerHTML = `<svg 
-    xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="currentColor">
-    <path d="M320-160h320v-120q0-66-47-113t-113-47q-66 0-113 47t-47 113v120Zm273-407q47-47 47-113v-120H320v120q0 66 47 113t113 47q66 0 113-47ZM160-80v-80h80v-120q0-61 28.5-114.5T348-480q-51-32-79.5-85.5T240-680v-120h-80v-80h640v80h-80v120q0 61-28.5 114.5T612-480q51 32 79.5 85.5T720-280v120h80v80H160Zm320-80Zm0-640Z"/>
-    </svg>`;
+    statusIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#"><path d="M127.5-267.5Q40-355 40-480t87.5-212.5Q215-780 340-780t212.5 87.5Q640-605 640-480t-87.5 212.5Q465-180 340-180t-212.5-87.5ZM740-160v-488l-44 44-56-56 140-140 140 140-57 56-43-43v487h-80ZM496-324q64-64 64-156t-64-156q-64-64-156-64t-156 64q-64 64-64 156t64 156q64 64 156 64t156-64Zm-76-16 56-56-96-97v-147h-80v180l120 120Zm-80-140Z"/></svg>`;
+    // Delay showing icon
+    const timeout = setTimeout(() => {
+      li.appendChild(statusIcon);
+    }, 2000);
+
+    li._pendingTimeout = timeout;
     li.appendChild(statusIcon);
+
+    if (li._pendingTimeout) {
+      clearTimeout(li._pendingTimeout);
+    }
   }
 
   const timeSpan = document.createElement("span");
