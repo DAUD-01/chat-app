@@ -1,6 +1,6 @@
 :root {
   /* --- Light Mode Palette --- */
-  --bg-main: #fafafa;
+  --bg-main: hsl(0, 0%, 90%);
   --bg-container: #ffffff;
   --bg-secondary: #f0f2f5;
   --bg-received: #efefef;
@@ -28,7 +28,7 @@
 
 /* --- Dark Mode Overrides --- */
 body.dark-mode {
-  --bg-main: hsl(0, 0%, 5%);
+  --bg-main: hsl(0, 0%, 10%);
   --bg-container: #000000;
   --bg-secondary: #000000;
   --bg-received: #111111;

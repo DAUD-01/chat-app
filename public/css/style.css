@@ -17,6 +17,9 @@ body {
   height: 92vh;
   margin: 20px auto;
   background: var(--bg-container);
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.05);
   border: 1px solid var(--border-default);
   border-radius: 12px;
   overflow: hidden;
