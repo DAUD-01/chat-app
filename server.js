@@ -70,10 +70,8 @@ mongoose
 
           await message.save();
 
-          // Fixed: Use broadcast so the sender (who rendered optimistically) doesn't get a duplicate
           socket.broadcast.emit("message", msg);
 
-          // Fixed: Send confirmation back to sender with correct ID casing
           socket.emit("messageAccepted", {
             tempID: msg.tempID,
           });

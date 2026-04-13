@@ -192,7 +192,7 @@ messageArea.addEventListener("keydown", (e) => {
   // Check if the key pressed is 'Enter'
   if (e.key === "Enter") {
     if (e.shiftKey) {
-      // Shift + Enter: Let the default behavior happen (new line)
+      // Shift + Enter: default behavior happen (new line)
       return;
     } else {
       e.preventDefault();
